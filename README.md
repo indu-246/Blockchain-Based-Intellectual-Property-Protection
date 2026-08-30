@@ -22,6 +22,10 @@ It allows creators to:
 
 ## Team Members
 
-- Member 1:
-- Member 2:
-- Member 3:
+- Indusri CR
+- Kumari Muskan Singh
+- Priyanka
+- Niharika
+- Nayanathara
+- Ganavi
+- Shrusti
