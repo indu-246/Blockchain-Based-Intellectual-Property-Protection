@@ -1,1 +1,44 @@
+/* Certificate section */
+.certificate {
+  display: none;
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 30px;
+  border: 3px solid #333;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  font-family: Arial, sans-serif;
+}
 
+.certificate h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.certificate p {
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+.certificate strong {
+  display: inline-block;
+  min-width: 180px;
+}
+
+.certificate .verified {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.certificate button {
+  display: block;
+  margin: 25px auto 0;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}

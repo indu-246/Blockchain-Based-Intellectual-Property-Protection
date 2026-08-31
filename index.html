@@ -233,7 +233,36 @@
                     class="status-message"
                 ></div>
 
-            </div>
+            </div><!-- Status -->
+<div
+    id="statusMessage"
+    class="status-message">
+</div>
+
+<!-- Certificate -->
+<section id="certificate" class="certificate" style="display: none;">
+    <h2>CreatorProof Certificate</h2>
+
+    <p><strong>Work Title:</strong> <span id="certificateTitle"></span></p>
+
+    <p><strong>Creator Wallet Address:</strong>
+        <span id="certificateWallet"></span>
+    </p>
+
+    <p><strong>File Hash:</strong>
+        <span id="certificateHash"></span>
+    </p>
+
+    <p><strong>Blockchain Timestamp:</strong>
+        <span id="certificateTimestamp"></span>
+    </p>
+
+    <p class="verified">✓ VERIFIED</p>
+
+    <button type="button" onclick="window.print()">
+        Print Certificate
+    </button>
+</section>
 
         </section>
 
