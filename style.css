@@ -4,157 +4,469 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f7fb;
-    color: #1f2937;
+
+html {
+    scroll-behavior: smooth;
 }
 
 
-/* Navbar */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f4f7fb;
+
+    color: #1f2937;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
 
 .navbar {
-    background: #111827;
-    color: white;
+
+    width: 100%;
 
     padding: 18px 8%;
 
+    background: #111827;
+
+    color: white;
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
 }
+
 
 .logo {
-    font-size: 24px;
+
+    font-size: 25px;
+
     font-weight: bold;
+
+    letter-spacing: 0.5px;
 }
+
 
 .navbar nav {
+
     display: flex;
-    gap: 25px;
+
+    gap: 28px;
 }
+
 
 .navbar a {
+
     color: white;
+
     text-decoration: none;
+
+    font-size: 15px;
+
+    transition: 0.2s;
 }
+
 
 .navbar a:hover {
-    text-decoration: underline;
+
+    opacity: 0.75;
 }
 
 
-/* Hero */
+/* =========================
+   HERO
+========================= */
 
 .hero {
+
+    min-height: 480px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
     text-align: center;
-    padding: 70px 20px 40px;
+
+    padding: 70px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef4ff,
+            #f8fafc
+        );
 }
+
+
+.hero-content {
+
+    max-width: 800px;
+}
+
+
+.badge,
+.section-badge {
+
+    display: inline-block;
+
+    padding: 6px 14px;
+
+    border-radius: 20px;
+
+    background: #e0e7ff;
+
+    color: #3730a3;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    margin-bottom: 18px;
+}
+
 
 .hero h1 {
-    font-size: 42px;
-    margin-bottom: 15px;
+
+    font-size: 48px;
+
+    line-height: 1.15;
+
+    margin-bottom: 20px;
 }
+
 
 .hero p {
-    font-size: 18px;
-    color: #6b7280;
-}
 
-
-/* Registration */
-
-.registration-section {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-}
-
-.registration-card {
-    width: 100%;
     max-width: 650px;
 
-    background: white;
+    margin: auto;
 
-    padding: 35px;
-
-    border-radius: 12px;
-
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.08);
-}
-
-.registration-card h2 {
-    text-align: center;
-    margin-bottom: 8px;
-}
-
-.subtitle {
-    text-align: center;
     color: #6b7280;
+
+    font-size: 18px;
+
     margin-bottom: 30px;
 }
 
 
-/* Form */
+.hero-button {
 
-.form-group {
-    margin-bottom: 20px;
-}
+    display: inline-block;
 
-.form-group label {
-    display: block;
+    padding: 13px 25px;
+
+    background: #2563eb;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 7px;
 
     font-weight: bold;
+
+    transition: 0.2s;
+}
+
+
+.hero-button:hover {
+
+    background: #1d4ed8;
+}
+
+
+/* =========================
+   REGISTRATION SECTION
+========================= */
+
+.registration-section {
+
+    display: flex;
+
+    justify-content: center;
+
+    padding: 70px 20px;
+}
+
+
+.registration-card {
+
+    width: 100%;
+
+    max-width: 700px;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.08);
+}
+
+
+.form-header {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+.form-header h2 {
+
+    font-size: 30px;
 
     margin-bottom: 8px;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
 
-    padding: 12px;
-
-    border: 1px solid #d1d5db;
-
-    border-radius: 7px;
-
-    font-size: 15px;
-
-    outline: none;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    border-color: #2563eb;
-}
-
-.form-group textarea {
-    resize: vertical;
-}
-
-.file-note {
-    margin-top: 6px;
-
-    font-size: 13px;
+.form-header p {
 
     color: #6b7280;
 }
 
 
-/* Register Button */
+/* =========================
+   WALLET
+========================= */
 
-.register-button {
-    width: 100%;
+.wallet-section {
 
-    padding: 14px;
+    text-align: center;
+
+    padding: 20px;
+
+    margin-bottom: 25px;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+}
+
+
+.wallet-button {
+
+    padding: 12px 25px;
 
     border: none;
 
     border-radius: 7px;
+
+    background: #111827;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.wallet-button:hover {
+
+    background: #374151;
+}
+
+
+.wallet-button.connected {
+
+    background: #059669;
+}
+
+
+.wallet-status {
+
+    margin-top: 10px;
+
+    font-size: 13px;
+
+    color: #6b7280;
+
+    word-break: break-all;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+
+    margin-bottom: 22px;
+}
+
+
+.form-group label,
+.hash-section label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: bold;
+
+    font-size: 15px;
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    font-family: inherit;
+
+    outline: none;
+
+    background: white;
+
+    transition: 0.2s;
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, 0.1);
+}
+
+
+.form-group textarea {
+
+    resize: vertical;
+
+    min-height: 120px;
+}
+
+
+/* =========================
+   FILE UPLOAD
+========================= */
+
+.file-upload {
+
+    padding: 15px;
+
+    border: 2px dashed #d1d5db;
+
+    border-radius: 8px;
+
+    background: #f9fafb;
+}
+
+
+.file-upload input {
+
+    border: none;
+
+    padding: 0;
+
+    background: transparent;
+}
+
+
+.file-note {
+
+    margin-top: 7px;
+
+    color: #6b7280;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   HASH DISPLAY
+========================= */
+
+.hash-section {
+
+    margin-bottom: 22px;
+}
+
+
+.hash-display {
+
+    min-height: 55px;
+
+    padding: 15px;
+
+    background: #f3f4f6;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    font-family: monospace;
+
+    font-size: 13px;
+
+    word-break: break-all;
+
+    color: #4b5563;
+}
+
+
+.hash-display.generated {
+
+    background: #ecfdf5;
+
+    border-color: #10b981;
+
+    color: #065f46;
+}
+
+
+/* =========================
+   REGISTER BUTTON
+========================= */
+
+.register-button {
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 8px;
 
     background: #2563eb;
 
@@ -165,37 +477,111 @@ body {
     font-weight: bold;
 
     cursor: pointer;
+
+    transition: 0.2s;
 }
 
+
 .register-button:hover {
+
     background: #1d4ed8;
 }
 
 
-/* Status */
+.register-button:disabled {
 
-.status-message {
-    text-align: center;
+    background: #9ca3af;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   SUCCESS / ERROR
+========================= */
+
+.success-message {
 
     margin-top: 20px;
 
-    font-weight: bold;
-}
+    padding: 13px;
 
+    border-radius: 8px;
 
-/* About */
+    background: #ecfdf5;
 
-.about-section {
-    padding: 70px 8%;
+    border: 1px solid #10b981;
+
+    color: #065f46;
 
     text-align: center;
+
+    font-weight: bold;
+
 }
 
-.about-section h2 {
-    margin-bottom: 35px;
+
+.error-message {
+
+    margin-top: 10px;
+
+    padding: 13px;
+
+    border-radius: 8px;
+
+    background: #fef2f2;
+
+    border: 1px solid #ef4444;
+
+    color: #991b1b;
+
+    text-align: center;
+
+    font-weight: bold;
+
 }
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-section {
+
+    padding: 80px 8%;
+
+    text-align: center;
+
+    background: #f8fafc;
+}
+
+
+.about-header {
+
+    max-width: 700px;
+
+    margin: auto;
+
+    margin-bottom: 45px;
+}
+
+
+.about-header h2 {
+
+    font-size: 32px;
+
+    margin-bottom: 12px;
+}
+
+
+.about-header p {
+
+    color: #6b7280;
+}
+
 
 .steps {
+
     display: flex;
 
     justify-content: center;
@@ -205,24 +591,32 @@ body {
     flex-wrap: wrap;
 }
 
+
 .step {
-    width: 260px;
+
+    width: 270px;
+
+    padding: 30px;
 
     background: white;
 
-    padding: 25px;
-
-    border-radius: 10px;
+    border-radius: 12px;
 
     box-shadow:
-        0 5px 15px rgba(0, 0, 0, 0.06);
+        0 5px 20px
+        rgba(0, 0, 0, 0.06);
 }
 
-.step-number {
-    width: 40px;
-    height: 40px;
 
-    margin: auto auto 15px;
+.step-number {
+
+    width: 48px;
+
+    height: 48px;
+
+    margin: auto;
+
+    margin-bottom: 15px;
 
     border-radius: 50%;
 
@@ -232,50 +626,129 @@ body {
 
     display: flex;
 
-    justify-content: center;
     align-items: center;
+
+    justify-content: center;
 
     font-weight: bold;
 }
 
+
 .step h3 {
+
     margin-bottom: 10px;
 }
 
+
 .step p {
+
     color: #6b7280;
 
-    line-height: 1.5;
+    font-size: 14px;
 }
 
 
-/* Footer */
+/* =========================
+   FOOTER
+========================= */
 
 footer {
-    text-align: center;
 
-    padding: 25px;
+    padding: 30px 20px;
+
+    text-align: center;
 
     background: #111827;
 
     color: white;
+
+    font-size: 13px;
 }
 
 
-/* Mobile */
+footer p:first-child {
 
-@media (max-width: 600px) {
+    margin-bottom: 5px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
 
     .navbar {
+
+        padding: 16px 5%;
+
         flex-direction: column;
+
         gap: 15px;
     }
 
-    .hero h1 {
-        font-size: 32px;
+
+    .navbar nav {
+
+        gap: 18px;
     }
 
-    .registration-card {
-        padding: 25px;
+
+    .hero {
+
+        padding: 60px 20px;
     }
+
+
+    .hero h1 {
+
+        font-size: 36px;
+    }
+
+
+    .hero p {
+
+        font-size: 16px;
+    }
+
+
+    .registration-card {
+
+        padding: 25px 20px;
+    }
+
+
+    .form-header h2 {
+
+        font-size: 26px;
+    }
+
+
+    .about-section {
+
+        padding: 60px 20px;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .hero h1 {
+
+        font-size: 30px;
+    }
+
+
+    .navbar nav {
+
+        gap: 12px;
+    }
+
+
+    .navbar a {
+
+        font-size: 13px;
+    }
+
 }

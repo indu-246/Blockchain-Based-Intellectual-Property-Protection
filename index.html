@@ -12,6 +12,8 @@
 
 <body>
 
+    <!-- Navigation Bar -->
+
     <header class="navbar">
 
         <div class="logo">
@@ -29,22 +31,35 @@
 
     <main>
 
-        <!-- Hero -->
+        <!-- Hero Section -->
 
         <section class="hero">
 
-            <h1>
-                Protect Your Creative Work
-            </h1>
+            <div class="hero-content">
 
-            <p>
-                Create blockchain-based proof of your intellectual property.
-            </p>
+                <span class="badge">
+                    🔐 Blockchain-Based IP Protection
+                </span>
+
+                <h1>
+                    Protect Your Creative Work
+                </h1>
+
+                <p>
+                    Create blockchain-based proof of your intellectual property
+                    using secure digital fingerprints.
+                </p>
+
+                <a href="#register" class="hero-button">
+                    Register Your Work
+                </a>
+
+            </div>
 
         </section>
 
 
-        <!-- Registration Form -->
+        <!-- Registration Section -->
 
         <section
             class="registration-section"
@@ -53,19 +68,51 @@
 
             <div class="registration-card">
 
-                <h2>
-                    Register Your Work
-                </h2>
+                <div class="form-header">
 
-                <p class="subtitle">
-                    Submit your work details to create a proof of registration.
-                </p>
+                    <span class="section-badge">
+                        IP Registration
+                    </span>
 
+                    <h2>
+                        Register Your Work
+                    </h2>
+
+                    <p>
+                        Submit your work details and generate a unique
+                        SHA-256 fingerprint.
+                    </p>
+
+                </div>
+
+
+                <!-- Wallet Section -->
+
+                <div class="wallet-section">
+
+                    <button
+                        type="button"
+                        id="connectWalletButton"
+                        class="wallet-button"
+                    >
+                        Connect Wallet
+                    </button>
+
+                    <p
+                        id="walletStatus"
+                        class="wallet-status"
+                    >
+                        Wallet not connected
+                    </p>
+
+                </div>
+
+
+                <!-- Registration Form -->
 
                 <form id="registrationForm">
 
-
-                    <!-- Creator -->
+                    <!-- Creator Name -->
 
                     <div class="form-group">
 
@@ -77,14 +124,14 @@
                             type="text"
                             id="creatorName"
                             name="creatorName"
-                            placeholder="Enter creator name"
+                            placeholder="Enter your name"
                             required
                         >
 
                     </div>
 
 
-                    <!-- Title -->
+                    <!-- Work Title -->
 
                     <div class="form-group">
 
@@ -96,7 +143,7 @@
                             type="text"
                             id="workTitle"
                             name="workTitle"
-                            placeholder="Enter title of your work"
+                            placeholder="Enter the title of your work"
                             required
                         >
 
@@ -191,7 +238,7 @@
                     </div>
 
 
-                    <!-- File -->
+                    <!-- File Upload -->
 
                     <div class="form-group">
 
@@ -199,24 +246,48 @@
                             Upload Your Work
                         </label>
 
-                        <input
-                            type="file"
-                            id="workFile"
-                            name="workFile"
-                            required
-                        >
+                        <div class="file-upload">
+
+                            <input
+                                type="file"
+                                id="workFile"
+                                name="workFile"
+                                required
+                            >
+
+                        </div>
 
                         <p class="file-note">
-                            The file will later be used to generate a SHA-256 fingerprint.
+                            The selected file will be used to generate
+                            a SHA-256 fingerprint.
                         </p>
 
                     </div>
 
 
-                    <!-- Submit -->
+                    <!-- Hash Display -->
+
+                    <div class="hash-section">
+
+                        <label>
+                            SHA-256 Fingerprint
+                        </label>
+
+                        <div
+                            id="hashDisplay"
+                            class="hash-display"
+                        >
+                            Hash will appear here after registration.
+                        </div>
+
+                    </div>
+
+
+                    <!-- Register Button -->
 
                     <button
                         type="submit"
+                        id="registerButton"
                         class="register-button"
                     >
                         Register Work
@@ -226,11 +297,21 @@
                 </form>
 
 
-                <!-- Status -->
+                <!-- Success Message -->
 
                 <div
-                    id="statusMessage"
-                    class="status-message"
+                    id="successMessage"
+                    class="success-message"
+                    role="alert"
+                ></div>
+
+
+                <!-- Error Message -->
+
+                <div
+                    id="errorMessage"
+                    class="error-message"
+                    role="alert"
                 ></div>
 
             </div>
@@ -238,25 +319,40 @@
         </section>
 
 
-        <!-- About -->
+        <!-- How It Works -->
 
         <section
             class="about-section"
             id="about"
         >
 
-            <h2>
-                How CreatorProof Works
-            </h2>
+            <div class="about-header">
+
+                <span class="section-badge">
+                    How It Works
+                </span>
+
+                <h2>
+                    Secure Your Creative Work
+                </h2>
+
+                <p>
+                    CreatorProof creates a digital fingerprint of your work
+                    and prepares it for blockchain registration.
+                </p>
+
+            </div>
 
 
             <div class="steps">
 
 
+                <!-- Step 1 -->
+
                 <div class="step">
 
                     <div class="step-number">
-                        1
+                        01
                     </div>
 
                     <h3>
@@ -270,10 +366,12 @@
                 </div>
 
 
+                <!-- Step 2 -->
+
                 <div class="step">
 
                     <div class="step-number">
-                        2
+                        02
                     </div>
 
                     <h3>
@@ -281,24 +379,27 @@
                     </h3>
 
                     <p>
-                        A unique SHA-256 fingerprint is generated for the file.
+                        Generate a unique SHA-256 fingerprint from the file.
                     </p>
 
                 </div>
 
 
+                <!-- Step 3 -->
+
                 <div class="step">
 
                     <div class="step-number">
-                        3
+                        03
                     </div>
 
                     <h3>
-                        Register on Blockchain
+                        Blockchain Registration
                     </h3>
 
                     <p>
-                        The fingerprint and registration details are recorded on the blockchain.
+                        The fingerprint can then be registered on the blockchain
+                        using your connected wallet.
                     </p>
 
                 </div>
@@ -311,10 +412,16 @@
     </main>
 
 
+    <!-- Footer -->
+
     <footer>
 
         <p>
             © 2026 CreatorProof
+        </p>
+
+        <p>
+            Blockchain-Based Intellectual Property Protection
         </p>
 
     </footer>
@@ -323,4 +430,5 @@
     <script src="app.js"></script>
 
 </body>
+
 </html>
