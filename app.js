@@ -34,14 +34,12 @@ const registerButton =
 
 /* =========================
    VARIABLES
-========================= */
 
 let connectedWallet = null;
 
 
 /* =========================
    MESSAGE FUNCTIONS
-========================= */
 
 function showSuccess(message) {
 
@@ -61,7 +59,6 @@ function showError(message) {
 
 /* =========================
    CONNECT METAMASK WALLET
-========================= */
 
 connectWalletButton.addEventListener(
     "click",
@@ -169,7 +166,6 @@ connectWalletButton.addEventListener(
 
 /* =========================
    SHA-256 FUNCTION
-========================= */
 
 async function generateSHA256(file) {
 
@@ -221,7 +217,6 @@ async function generateSHA256(file) {
 
 /* =========================
    FILE SELECTION
-========================= */
 
 const workFile =
     document.getElementById("workFile");
@@ -276,7 +271,6 @@ workFile.addEventListener(
 
 /* =========================
    REGISTRATION
-========================= */
 
 registrationForm.addEventListener(
     "submit",
@@ -532,7 +526,6 @@ registrationForm.addEventListener(
 
 /* =========================
    METAMASK ACCOUNT CHANGE
-========================= */
 
 if (window.ethereum) {
 
