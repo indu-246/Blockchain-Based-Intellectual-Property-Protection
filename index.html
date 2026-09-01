@@ -1,15 +1,485 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CreatorProof</title>
+
+    <title>CreatorProof - Register IP</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>CreatorProof</h1>
-    <p>Blockchain-based proof of creation</p>
+
+    <!-- Navigation Bar -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            CreatorProof
+        </div>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#register">Register</a>
+            <a href="#about">About</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <!-- Hero Section -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="badge">
+                    🔐 Blockchain-Based IP Protection
+                </span>
+
+                <h1>
+                    Protect Your Creative Work
+                </h1>
+
+                <p>
+                    Create blockchain-based proof of your intellectual property
+                    using secure digital fingerprints.
+                </p>
+
+                <a href="#register" class="hero-button">
+                    Register Your Work
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Registration Section -->
+
+        <section
+            class="registration-section"
+            id="register"
+        >
+
+            <div class="registration-card">
+
+                <div class="form-header">
+
+                    <span class="section-badge">
+                        IP Registration
+                    </span>
+
+                    <h2>
+                        Register Your Work
+                    </h2>
+
+                    <p>
+                        Submit your work details and generate a unique
+                        SHA-256 fingerprint.
+                    </p>
+
+                </div>
+
+
+                <!-- Wallet Section -->
+
+                <div class="wallet-section">
+
+                    <button
+                        type="button"
+                        id="connectWalletButton"
+                        class="wallet-button"
+                    >
+                        Connect Wallet
+                    </button>
+
+                    <p
+                        id="walletStatus"
+                        class="wallet-status"
+                    >
+                        Wallet not connected
+                    </p>
+
+                </div>
+
+
+                <!-- Registration Form -->
+
+                <form id="registrationForm">
+
+                    <!-- Creator Name -->
+
+                    <div class="form-group">
+
+                        <label for="creatorName">
+                            Creator Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="creatorName"
+                            name="creatorName"
+                            placeholder="Enter your name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Work Title -->
+
+                    <div class="form-group">
+
+                        <label for="workTitle">
+                            Work Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="workTitle"
+                            name="workTitle"
+                            placeholder="Enter the title of your work"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Work Type -->
+
+                    <div class="form-group">
+
+                        <label for="workType">
+                            Type of Work
+                        </label>
+
+                        <select
+                            id="workType"
+                            name="workType"
+                            required
+                        >
+
+                            <option value="">
+                                Select work type
+                            </option>
+
+                            <option value="literary">
+                                Literary Work
+                            </option>
+
+                            <option value="art">
+                                Artwork
+                            </option>
+
+                            <option value="music">
+                                Music
+                            </option>
+
+                            <option value="video">
+                                Video
+                            </option>
+
+                            <option value="software">
+                                Software
+                            </option>
+
+                            <option value="research">
+                                Research Paper
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Creation Date -->
+
+                    <div class="form-group">
+
+                        <label for="creationDate">
+                            Creation Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="creationDate"
+                            name="creationDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Description -->
+
+                    <div class="form-group">
+
+                        <label for="description">
+                            Work Description
+                        </label>
+
+                        <textarea
+                            id="description"
+                            name="description"
+                            rows="5"
+                            placeholder="Briefly describe your intellectual property..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- File Upload -->
+
+                    <div class="form-group">
+
+                        <label for="workFile">
+                            Upload Your Work
+                        </label>
+
+                        <div class="file-upload">
+
+                            <input
+                                type="file"
+                                id="workFile"
+                                name="workFile"
+                                required
+                            >
+
+                        </div>
+
+                        <p class="file-note">
+                            The selected file will be used to generate
+                            a SHA-256 fingerprint.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Hash Display -->
+
+                    <div class="hash-section">
+
+                        <label>
+                            SHA-256 Fingerprint
+                        </label>
+
+                        <div
+                            id="hashDisplay"
+                            class="hash-display"
+                        >
+                            Hash will appear here after registration.
+                        </div>
+
+                    </div>
+
+
+                    <!-- Register Button -->
+
+                    <button
+                        type="submit"
+                        id="registerButton"
+                        class="register-button"
+                    >
+                        Register Work
+                    </button>
+
+
+                </form>
+
+
+                <!-- Success Message -->
+
+                <div
+                    id="successMessage"
+                    class="success-message"
+                    role="alert"
+                ></div>
+
+
+                <!-- Error Message -->
+
+                <div
+                    id="errorMessage"
+                    class="error-message"
+                    role="alert"
+                ></div>
+
+            </div><!-- Status -->
+<div
+    id="statusMessage"
+    class="status-message">
+</div>
+
+<!-- Certificate -->
+<section id="certificate" class="certificate" style="display: none;">
+    <h2>CreatorProof Certificate</h2>
+
+    <p><strong>Work Title:</strong> <span id="certificateTitle"></span></p>
+
+    <p><strong>Creator Wallet Address:</strong>
+        <span id="certificateWallet"></span>
+    </p>
+
+    <p><strong>File Hash:</strong>
+        <span id="certificateHash"></span>
+    </p>
+
+    <p><strong>Blockchain Timestamp:</strong>
+        <span id="certificateTimestamp"></span>
+    </p>
+
+    <p class="verified">✓ VERIFIED</p>
+
+    <button type="button" onclick="window.print()">
+        Print Certificate
+    </button>
+</section>
+
+        </section>
+
+
+        <!-- How It Works -->
+
+        <section
+            class="about-section"
+            id="about"
+        >
+
+            <div class="about-header">
+
+                <span class="section-badge">
+                    How It Works
+                </span>
+
+                <h2>
+                    Secure Your Creative Work
+                </h2>
+
+                <p>
+                    CreatorProof creates a digital fingerprint of your work
+                    and prepares it for blockchain registration.
+                </p>
+
+            </div>
+
+
+            <div class="steps">
+
+
+                <!-- Step 1 -->
+
+                <div class="step">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Submit
+                    </h3>
+
+                    <p>
+                        Enter your work details and upload your original file.
+                    </p>
+
+                </div>
+
+
+                <!-- Step 2 -->
+
+                <div class="step">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Generate Fingerprint
+                    </h3>
+
+                    <p>
+                        Generate a unique SHA-256 fingerprint from the file.
+                    </p>
+
+                </div>
+
+
+                <!-- Step 3 -->
+
+                <div class="step">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Blockchain Registration
+                    </h3>
+
+                    <p>
+                        The fingerprint can then be registered on the blockchain
+                        using your connected wallet.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 CreatorProof
+        </p>
+
+        <p>
+            Blockchain-Based Intellectual Property Protection
+        </p>
+
+    </footer>
+
 
     <script src="app.js"></script>
-</body>
+
+<section id="certificate" style="display: none;">
+    <h2>Proof of Creation Certificate</h2>
+
+    <p><strong>Work Title:</strong> <span id="certificateTitle"></span></p>
+
+    <p><strong>Creator Wallet Address:</strong>
+        <span id="certificateWallet"></span>
+    </p>
+
+    <p><strong>File Hash:</strong>
+        <span id="certificateHash"></span>
+    </p>
+
+    <p><strong>Blockchain Timestamp:</strong>
+        <span id="certificateTimestamp"></span>
+    </p>
+
+    <p><strong>Status:</strong>
+        <span id="certificateStatus">Verified</span>
+    </p>
+
+    <button onclick="window.print()">Print Certificate</button>
+</section></body>
+
 </html>
