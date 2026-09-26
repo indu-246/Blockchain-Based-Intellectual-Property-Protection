@@ -9,6 +9,7 @@ function showCertificate(title, walletAddress, fileHash, timestamp) {
 
 /* =========================
    ELEMENTS
+========================= */
 
 const registrationForm =
     document.getElementById("registrationForm");
@@ -31,86 +32,60 @@ const errorMessage =
 const registerButton =
     document.getElementById("registerButton");
 
+const workFile =
+    document.getElementById("workFile");
 
 /* =========================
    VARIABLES
+========================= */
 
 let connectedWallet = null;
 
-
 /* =========================
    MESSAGE FUNCTIONS
+========================= */
 
 function showSuccess(message) {
-
     successMessage.textContent = message;
-
     errorMessage.textContent = "";
 }
 
-
 function showError(message) {
-
     errorMessage.textContent = message;
-
     successMessage.textContent = "";
 }
 
-
 /* =========================
    CONNECT METAMASK WALLET
+========================= */
 
 connectWalletButton.addEventListener(
     "click",
     async function () {
 
         showSuccess("");
-
         showError("");
 
-        /*
-         * Check whether MetaMask
-         * or another Ethereum wallet exists.
-         */
-
         if (!window.ethereum) {
-
             showError(
                 "MetaMask is not installed. Please install MetaMask to connect your wallet."
             );
-
             return;
         }
 
-
         try {
-
-            /*
-             * Request wallet accounts.
-             */
 
             const accounts =
                 await window.ethereum.request({
                     method: "eth_requestAccounts"
                 });
 
-
             if (accounts.length === 0) {
-
-                showError(
-                    "No wallet account was found."
-                );
-
+                showError("No wallet account was found.");
                 return;
             }
 
-
             connectedWallet = accounts[0];
-
-
-            /*
-             * Display shortened wallet address.
-             */
 
             const shortenedAddress =
                 connectedWallet.substring(0, 6) +
@@ -119,68 +94,45 @@ connectWalletButton.addEventListener(
                     connectedWallet.length - 4
                 );
 
-
             walletStatus.textContent =
-                "Connected: " +
-                shortenedAddress;
-
+                "Connected: " + shortenedAddress;
 
             connectWalletButton.textContent =
                 "Wallet Connected";
 
-
-            connectWalletButton.classList.add(
-                "connected"
-            );
-
+            connectWalletButton.classList.add("connected");
 
             showSuccess(
                 "Wallet connected successfully."
             );
-
 
             console.log(
                 "Connected wallet:",
                 connectedWallet
             );
 
-        }
-
-        catch (error) {
+        } catch (error) {
 
             console.error(
                 "Wallet connection error:",
                 error
             );
 
-
             showError(
                 "Wallet connection was cancelled or failed."
             );
-
         }
-
     }
 );
 
-
 /* =========================
    SHA-256 FUNCTION
+========================= */
 
 async function generateSHA256(file) {
 
-    /*
-     * Convert the file into
-     * an ArrayBuffer.
-     */
-
     const fileBuffer =
         await file.arrayBuffer();
-
-
-    /*
-     * Generate SHA-256 digest.
-     */
 
     const hashBuffer =
         await crypto.subtle.digest(
@@ -188,17 +140,10 @@ async function generateSHA256(file) {
             fileBuffer
         );
 
-
-    /*
-     * Convert the hash into
-     * hexadecimal format.
-     */
-
     const hashArray =
         Array.from(
             new Uint8Array(hashBuffer)
         );
-
 
     const hashHex =
         hashArray
@@ -210,91 +155,52 @@ async function generateSHA256(file) {
             )
             .join("");
 
-
     return hashHex;
 }
 
-
 /* =========================
    FILE SELECTION
-
-const workFile =
-    document.getElementById("workFile");
-
+========================= */
 
 workFile.addEventListener(
     "change",
     function () {
 
-        /*
-         * Clear previous messages.
-         */
-
         successMessage.textContent = "";
-
         errorMessage.textContent = "";
-
-
-        /*
-         * Get selected file.
-         */
 
         const file =
             workFile.files[0];
-
 
         if (!file) {
 
             hashDisplay.textContent =
                 "Hash will appear here after registration.";
 
-            hashDisplay.classList.remove(
-                "generated"
-            );
+            hashDisplay.classList.remove("generated");
 
             return;
         }
-
-
-        /*
-         * Display selected filename.
-         */
 
         console.log(
             "Selected file:",
             file.name
         );
-
     }
 );
 
-
 /* =========================
    REGISTRATION
+========================= */
 
 registrationForm.addEventListener(
     "submit",
     async function (event) {
 
-        /*
-         * Prevent page refresh.
-         */
-
         event.preventDefault();
 
-
-        /*
-         * Clear old messages.
-         */
-
         successMessage.textContent = "";
-
         errorMessage.textContent = "";
-
-
-        /*
-         * Get form values.
-         */
 
         const creatorName =
             document
@@ -302,25 +208,21 @@ registrationForm.addEventListener(
                 .value
                 .trim();
 
-
         const workTitle =
             document
                 .getElementById("workTitle")
                 .value
                 .trim();
 
-
         const workType =
             document
                 .getElementById("workType")
                 .value;
 
-
         const creationDate =
             document
                 .getElementById("creationDate")
                 .value;
-
 
         const description =
             document
@@ -328,77 +230,56 @@ registrationForm.addEventListener(
                 .value
                 .trim();
 
-
         const file =
             document
                 .getElementById("workFile")
                 .files[0];
 
-
         /* =========================
            VALIDATION
         ========================= */
 
-
         if (!creatorName) {
-
             showError(
                 "Please enter the creator name."
             );
-
             return;
         }
 
-
         if (!workTitle) {
-
             showError(
                 "Please enter the work title."
             );
-
             return;
         }
 
-
         if (!workType) {
-
             showError(
                 "Please select the type of work."
             );
-
             return;
         }
 
-
         if (!creationDate) {
-
             showError(
                 "Please select the creation date."
             );
-
             return;
         }
 
-
         if (!description) {
-
             showError(
                 "Please enter a description of the work."
             );
-
             return;
         }
 
-
         if (!file) {
-
             showError(
                 "Please select a file to register."
             );
-
             return;
         }
-
 
         /* =========================
            GENERATE SHA-256
@@ -411,121 +292,67 @@ registrationForm.addEventListener(
             registerButton.textContent =
                 "Generating Fingerprint...";
 
-
-            /*
-             * Generate file fingerprint.
-             */
-
             const hash =
                 await generateSHA256(file);
 
-
-            /*
-             * Display generated hash.
-             */
-
             hashDisplay.textContent =
                 hash;
-
 
             hashDisplay.classList.add(
                 "generated"
             );
 
-
-            /* =========================
-               LOG DATA
-            ========================= */
-
-            console.log(
-                "Creator:",
-                creatorName
-            );
-
-
-            console.log(
-                "Work Title:",
-                workTitle
-            );
-
-
-            console.log(
-                "Work Type:",
-                workType
-            );
-
-
-            console.log(
-                "Creation Date:",
-                creationDate
-            );
-
-
-            console.log(
-                "Description:",
-                description
-            );
-
-
-            console.log(
-                "File:",
-                file.name
-            );
-
-
-            console.log(
-                "SHA-256:",
-                hash
-            );
-
-
-            console.log(
-                "Wallet:",
-                connectedWallet
-            );
-
-
-            /* =========================
-               SUCCESS
-            ========================= */
-
+            console.log("Creator:", creatorName);
+            console.log("Work Title:", workTitle);
+            console.log("Work Type:", workType);
+            console.log("Creation Date:", creationDate);
+            console.log("Description:", description);
+            console.log("File:", file.name);
+            console.log("SHA-256:", hash);
+            console.log("Wallet:", connectedWallet);
 
             showSuccess(
                 "SHA-256 fingerprint generated successfully. Your work is ready for blockchain registration."
             );
 
+            /* =========================
+               SHOW CERTIFICATE
+            ========================= */
 
-        }
+            const timestamp =
+                new Date().toLocaleString();
 
-        catch (error) {
+            showCertificate(
+                workTitle,
+                connectedWallet || "Wallet not connected",
+                hash,
+                timestamp
+            );
+
+        } catch (error) {
 
             console.error(
                 "Hash generation error:",
                 error
             );
 
-
             showError(
                 "Unable to generate the SHA-256 fingerprint."
             );
 
-        }
-
-        finally {
+        } finally {
 
             registerButton.disabled = false;
 
             registerButton.textContent =
                 "Register Work";
-
         }
-
     }
 );
 
-
 /* =========================
    METAMASK ACCOUNT CHANGE
+========================= */
 
 if (window.ethereum) {
 
@@ -550,10 +377,8 @@ if (window.ethereum) {
                 return;
             }
 
-
             connectedWallet =
                 accounts[0];
-
 
             const shortenedAddress =
                 connectedWallet.substring(0, 6) +
@@ -562,12 +387,9 @@ if (window.ethereum) {
                     connectedWallet.length - 4
                 );
 
-
             walletStatus.textContent =
                 "Connected: " +
                 shortenedAddress;
-
         }
     );
-
 }
