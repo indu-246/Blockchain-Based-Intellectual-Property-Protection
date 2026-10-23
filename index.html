@@ -12,6 +12,7 @@
     <a class="logo" href="#" aria-label="CreatorProof home"><span class="logo-mark">⬡</span> Creator<span>Proof</span></a>
     <nav aria-label="Main navigation">
       <a href="#">Home</a>
+      <a href="#verify">Verify</a>
       <a href="#register">Register</a>
       <a href="#about">About</a>
     </nav>
@@ -164,6 +165,42 @@
             <div class="security-glow"></div>
           </div>
         </aside>
+      </div>
+    </section>
+
+    <section class="registration-section" id="verify">
+      <div class="registration-layout verification-layout">
+        <div class="registration-card">
+          <div class="form-header">
+            <span class="section-badge">PUBLIC / READ-ONLY VERIFICATION</span>
+            <h2>Verify a file<span class="green-dot">.</span></h2>
+            <p>Check whether this file's SHA-256 fingerprint has a record on Sepolia. No wallet connection is needed.</p>
+          </div>
+
+          <form id="verificationForm">
+            <div class="form-group">
+              <label for="verificationFile">Choose a file to verify</label>
+              <input type="file" id="verificationFile" name="verificationFile" required>
+              <p class="file-note">The file is hashed in your browser and is not uploaded or stored on the blockchain.</p>
+            </div>
+
+            <div class="hash-section">
+              <label for="verificationHash">SHA-256 fingerprint</label>
+              <div id="verificationHash" class="hash-display">Hash will appear after you select a file.</div>
+            </div>
+
+            <button type="submit" id="verifyButton" class="register-button">Verify on Sepolia <span>↗</span></button>
+          </form>
+
+          <p id="verificationMessage" class="verification-message" role="status" aria-live="polite"></p>
+          <dl id="verificationDetails" class="verification-details" hidden>
+            <div><dt>Status</dt><dd>Registered on Sepolia</dd></div>
+            <div><dt>Work title</dt><dd id="verifiedTitle"></dd></div>
+            <div><dt>Creator wallet</dt><dd id="verifiedCreator"></dd></div>
+            <div><dt>Blockchain timestamp</dt><dd><time id="verifiedTimestamp"></time></dd></div>
+          </dl>
+          <p class="file-note">A matching hash proves only that identical file contents were recorded by this contract. It does not establish legal copyright ownership.</p>
+        </div>
       </div>
     </section>
 
