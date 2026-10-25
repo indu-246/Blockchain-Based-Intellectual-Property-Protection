@@ -131,6 +131,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .wallet-copy strong { display: block; font-size: 12px; }
 .wallet-copy p { color: var(--muted); font-size: 10px; }
 .wallet-action { text-align: right; flex: 0 0 auto; }
+.wallet-provider-select { display: block; max-width: 190px; margin: 0 0 8px auto; padding: 8px 10px; border: 1px solid rgba(0,245,160,.35); border-radius: 8px; background: #080f0b; color: var(--text); font-size: 11px; }
+.wallet-provider-select[hidden] { display: none; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .wallet-button { padding: 10px 13px; border: 1px solid rgba(0,245,160,.5); border-radius: 8px; color: #04140c; background: var(--green); font-size: 11px; font-weight: 800; cursor: pointer; transition: box-shadow .2s, transform .2s; }
 .wallet-button:hover { transform: translateY(-1px); box-shadow: 0 0 20px rgba(0,245,160,.2); }
 .wallet-button.connected { background: #087f52; color: white; }
@@ -175,6 +178,13 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .verification-details > div { display: grid; grid-template-columns: minmax(120px, .35fr) 1fr; gap: 12px; padding: 12px; border: 1px solid rgba(0,245,160,.16); border-radius: 8px; background: rgba(0,245,160,.025); }
 .verification-details dt { color: var(--muted); font-size: 11px; }
 .verification-details dd { color: var(--text); font-size: 12px; overflow-wrap: anywhere; }
+.blockchain-certificate { margin-top: 18px; padding: 18px; border: 1px solid rgba(0,245,160,.45); border-radius: 12px; background: linear-gradient(145deg, rgba(0,245,160,.07), rgba(7,13,10,.96)); }
+.blockchain-certificate h3 { margin-bottom: 12px; color: var(--green-soft); font-size: 14px; }
+.blockchain-certificate dl { display: grid; gap: 8px; }
+.blockchain-certificate dl > div { display: grid; grid-template-columns: minmax(125px, .35fr) 1fr; gap: 12px; }
+.blockchain-certificate dt { color: var(--muted); font-size: 10px; }
+.blockchain-certificate dd, .blockchain-certificate p { color: var(--text); font-size: 11px; overflow-wrap: anywhere; }
+.blockchain-certificate p { margin-top: 12px; color: var(--muted); }
 
 /* Side information */
 .side-column { display: flex; flex-direction: column; gap: 20px; }
@@ -201,6 +211,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .about-header .section-badge { margin-bottom: 12px; }
 .about-header h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.2; letter-spacing: -1.3px; margin-bottom: 11px; }
 .about-header p { color: var(--muted); font-size: 13px; }
+.about-details { width: min(1050px, 100%); margin: 0 auto 24px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.about-detail-card { padding: 20px 23px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(145deg, rgba(14,25,19,.96), rgba(7,13,10,.98)); box-shadow: var(--shadow); }
+.about-detail-card .section-badge { margin-bottom: 8px; font-size: 9px; }
+.about-detail-card p { color: var(--muted); font-size: 11px; line-height: 1.8; }
 .feature-grid { width: min(1050px, 100%); margin: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .feature-card { padding: 23px; transition: transform .2s, border-color .2s; }
 .feature-card:hover { transform: translateY(-4px); border-color: rgba(0,245,160,.48); }
@@ -253,11 +267,13 @@ footer p, footer small { color: #74877c; font-size: 10px; }
   .wallet-section { align-items: flex-start; flex-direction: column; }
   .wallet-action { width: 100%; text-align: left; }
   .wallet-status { max-width: 100%; }
+  .wallet-provider-select { max-width: 100%; margin-left: 0; }
   .form-grid { grid-template-columns: 1fr; gap: 0; }
   .side-column { display: flex; }
   .side-heading h2 { font-size: 36px; }
   .process-card, .security-card { padding: 18px; }
   .about-section { padding: 55px 16px; }
+  .about-details { grid-template-columns: 1fr; gap: 12px; }
   .feature-grid { grid-template-columns: 1fr; }
   .feature-card { padding: 20px; }
   footer { flex-direction: column; text-align: center; }

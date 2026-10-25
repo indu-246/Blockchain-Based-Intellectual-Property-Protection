@@ -73,6 +73,8 @@
               <div><strong>Blockchain wallet</strong><p>Connect your wallet to register on-chain.</p></div>
             </div>
             <div class="wallet-action">
+              <label class="visually-hidden" for="walletProviderSelect">Choose wallet</label>
+              <select id="walletProviderSelect" class="wallet-provider-select" aria-label="Choose wallet" hidden></select>
               <button type="button" id="connectWalletButton" class="wallet-button">Connect Wallet <span>↗</span></button>
               <p id="walletStatus" class="wallet-status">Wallet not connected</p>
             </div>
@@ -209,6 +211,24 @@
         <span class="section-badge">WHY CREATORPROOF</span>
         <h2>Protection starts with <span>proof.</span></h2>
         <p>Simple tools to create a verifiable digital record of your creative work.</p>
+      </div>
+      <div class="about-details">
+        <article class="about-detail-card">
+          <span class="section-badge">THE PROBLEM</span>
+          <p>Creators need a verifiable record that a particular digital file existed when it was registered.</p>
+        </article>
+        <article class="about-detail-card">
+          <span class="section-badge">THE SOLUTION</span>
+          <p>CreatorProof generates a SHA-256 fingerprint and records it through a Solidity smart contract on Sepolia. Anyone can check a file's fingerprint using public, read-only verification.</p>
+        </article>
+        <article class="about-detail-card">
+          <span class="section-badge">TECHNOLOGY</span>
+          <p>HTML, CSS, JavaScript, ethers.js v6, Solidity, MetaMask for signing registration transactions, and the Ethereum Sepolia testnet.</p>
+        </article>
+        <article class="about-detail-card">
+          <span class="section-badge">LIMITATIONS</span>
+          <p>The system records and verifies file hashes. It does not guarantee legal copyright ownership or prevent copying.</p>
+        </article>
       </div>
       <div class="feature-grid">
         <article class="feature-card"><span class="feature-icon">⌑</span><h3>Digital fingerprint</h3><p>A SHA-256 hash represents the contents of your selected file.</p></article>
