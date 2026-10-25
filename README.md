@@ -16,7 +16,7 @@ It allows creators to:
 - CSS
 - JavaScript
 - Solidity
-- MetaMask
+- Rabby Wallet / MetaMask-compatible wallet
 - Remix IDE
 - Ethers.js
 
