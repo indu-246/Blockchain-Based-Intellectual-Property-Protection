@@ -1,3 +1,4 @@
+ feature/registration-ui
 
 /* =========================
    CREATORPROOF CONTRACT
@@ -14,6 +15,16 @@ const CONTRACT_ABI = [
     "function registered(bytes32 fileHash) view returns (bool)",
     "function verifyWork(bytes32 fileHash) view returns (bool exists, string title, address creator, uint256 timestamp)"
 ];
+
+function showCertificate(title, walletAddress, fileHash, timestamp) {
+    document.getElementById("certificate").style.display = "block";
+
+    document.getElementById("certificateTitle").textContent = title;
+    document.getElementById("certificateWallet").textContent = walletAddress;
+    document.getElementById("certificateHash").textContent = fileHash;
+    document.getElementById("certificateTimestamp").textContent = timestamp;
+}
+main
 
 /* =========================
    ELEMENTS
@@ -43,6 +54,7 @@ const errorMessage =
 const registerButton =
     document.getElementById("registerButton");
 
+ feature/registration-ui
 const verificationForm =
     document.getElementById("verificationForm");
 
@@ -61,6 +73,10 @@ const verifyButton =
 const verificationDetails =
     document.getElementById("verificationDetails");
 
+=======
+const workFile =
+    document.getElementById("workFile");
+ main
 
 /* =========================
    VARIABLES
@@ -72,26 +88,19 @@ let selectedWalletId = null;
 const walletProviders = [];
 const observedWalletProviders = new WeakSet();
 
-
 /* =========================
    MESSAGE FUNCTIONS
 ========================= */
 
 function showSuccess(message) {
-
     successMessage.textContent = message;
-
     errorMessage.textContent = "";
 }
 
-
 function showError(message) {
-
     errorMessage.textContent = message;
-
     successMessage.textContent = "";
 }
-
 
 /* =========================
    WALLET PROVIDER SELECTION
@@ -102,6 +111,7 @@ function addWalletProvider(provider, info) {
         return;
     }
 
+ feature/registration-ui
     const rdns = (info && info.rdns || "").toLowerCase();
     const providerName = (info && info.name || "").toLowerCase();
     let name;
@@ -269,6 +279,41 @@ function showConnectedWallet(accounts, entry) {
         return;
     }
 
+        showSuccess("");
+        showError("");
+
+        if (!window.ethereum) {
+            showError(
+                "MetaMask is not installed. Please install MetaMask to connect your wallet."
+            );
+            return;
+        }
+
+        try {
+
+            const accounts =
+                await window.ethereum.request({
+                    method: "eth_requestAccounts"
+                });
+
+            if (accounts.length === 0) {
+                showError("No wallet account was found.");
+                return;
+            }
+
+            connectedWallet = accounts[0];
+
+            const shortenedAddress =
+                connectedWallet.substring(0, 6) +
+                "..." +
+                connectedWallet.substring(
+                    connectedWallet.length - 4
+                );
+
+            walletStatus.textContent =
+                "Connected: " + shortenedAddress;
+ main
+
     connectedWallet = accounts[0];
     const shortenedAddress =
         connectedWallet.substring(0, 6) +
@@ -279,6 +324,7 @@ function showConnectedWallet(accounts, entry) {
     connectWalletButton.classList.add("connected");
 }
 
+ feature/registration-ui
 function observeWalletProvider(entry) {
     if (observedWalletProviders.has(entry.provider)) {
         return;
@@ -330,8 +376,12 @@ walletProviderSelect.addEventListener("change", function () {
         ? "Selected: " + selected.name
         : "Choose a wallet to continue";
 });
+=======
+            connectWalletButton.classList.add("connected");
+ main
 
 
+ feature/registration-ui
 /* =========================
    CONNECT SELECTED WALLET
 ========================= */
@@ -343,6 +393,14 @@ connectWalletButton.addEventListener(
         showSuccess("");
 
         showError("");
+=======
+            console.log(
+                "Connected wallet:",
+                connectedWallet
+            );
+
+        } catch (error) {
+ main
 
         try {
             const { selectedWallet } = await connectSelectedWallet();
@@ -353,7 +411,14 @@ connectWalletButton.addEventListener(
                 "Wallet connection error:",
                 error
             );
+ feature/registration-ui
             showError(registrationErrorMessage(error));
+
+
+            showError(
+                "Wallet connection was cancelled or failed."
+            );
+ main
         }
     }
 );
@@ -364,6 +429,7 @@ connectWalletButton.addEventListener(
 
 async function generateSHA256(file) {
 
+ feature/registration-ui
     if (!file || typeof file.arrayBuffer !== "function") {
         throw new Error("Please select a valid file.");
     }
@@ -379,13 +445,10 @@ async function generateSHA256(file) {
      * an ArrayBuffer.
      */
 
+
+ main
     const fileBuffer =
         await file.arrayBuffer();
-
-
-    /*
-     * Generate SHA-256 digest.
-     */
 
     const hashBuffer =
         await crypto.subtle.digest(
@@ -393,17 +456,10 @@ async function generateSHA256(file) {
             fileBuffer
         );
 
-
-    /*
-     * Convert the hash into
-     * hexadecimal format.
-     */
-
     const hashArray =
         Array.from(
             new Uint8Array(hashBuffer)
         );
-
 
     const hashHex =
         hashArray
@@ -415,10 +471,10 @@ async function generateSHA256(file) {
             )
             .join("");
 
-
     return hashHex;
 }
 
+ feature/registration-ui
 function clearVerificationResult() {
     verificationMessage.textContent = "";
     verificationMessage.dataset.state = "";
@@ -624,24 +680,17 @@ verificationFile.addEventListener("change", function () {
 });
 
 
+
+ main
 /* =========================
    FILE SELECTION
 ========================= */
-
-const workFile =
-    document.getElementById("workFile");
-
 
 workFile.addEventListener(
     "change",
     function () {
 
-        /*
-         * Clear previous messages.
-         */
-
         successMessage.textContent = "";
-
         errorMessage.textContent = "";
         removeCertificate(registrationForm);
 
@@ -649,40 +698,25 @@ workFile.addEventListener(
             "Hash will appear here after registration.";
         hashDisplay.classList.remove("generated");
 
-
-        /*
-         * Get selected file.
-         */
-
         const file =
             workFile.files[0];
-
 
         if (!file) {
 
             hashDisplay.textContent =
                 "Hash will appear here after registration.";
 
-            hashDisplay.classList.remove(
-                "generated"
-            );
+            hashDisplay.classList.remove("generated");
 
             return;
         }
-
-
-        /*
-         * Display selected filename.
-         */
 
         console.log(
             "Selected file:",
             file.name
         );
-
     }
 );
-
 
 /* =========================
    REGISTRATION
@@ -691,10 +725,15 @@ workFile.addEventListener(
 registrationForm.addEventListener(
     "submit",
     async function (event) {
+ feature/registration-ui
+
+
+ main
         event.preventDefault();
 
         successMessage.textContent = "";
         errorMessage.textContent = "";
+ feature/registration-ui
         removeCertificate(registrationForm);
 
         const creatorName = document.getElementById("creatorName").value.trim();
@@ -712,6 +751,92 @@ registrationForm.addEventListener(
         }
 
         registerButton.disabled = true;
+
+
+        const creatorName =
+            document
+                .getElementById("creatorName")
+                .value
+                .trim();
+
+        const workTitle =
+            document
+                .getElementById("workTitle")
+                .value
+                .trim();
+
+        const workType =
+            document
+                .getElementById("workType")
+                .value;
+
+        const creationDate =
+            document
+                .getElementById("creationDate")
+                .value;
+
+        const description =
+            document
+                .getElementById("description")
+                .value
+                .trim();
+
+        const file =
+            document
+                .getElementById("workFile")
+                .files[0];
+
+        /* =========================
+           VALIDATION
+        ========================= */
+
+        if (!creatorName) {
+            showError(
+                "Please enter the creator name."
+            );
+            return;
+        }
+
+        if (!workTitle) {
+            showError(
+                "Please enter the work title."
+            );
+            return;
+        }
+
+        if (!workType) {
+            showError(
+                "Please select the type of work."
+            );
+            return;
+        }
+
+        if (!creationDate) {
+            showError(
+                "Please select the creation date."
+            );
+            return;
+        }
+
+        if (!description) {
+            showError(
+                "Please enter a description of the work."
+            );
+            return;
+        }
+
+        if (!file) {
+            showError(
+                "Please select a file to register."
+            );
+            return;
+        }
+
+        /* =========================
+           GENERATE SHA-256
+        ========================= */
+
+ main
         try {
             registerButton.textContent = "Generating Fingerprint...";
             const hash = await generateSHA256(file);
@@ -723,6 +848,7 @@ registrationForm.addEventListener(
             hashDisplay.classList.add("generated");
 
             registerButton.textContent =
+ feature/registration-ui
                 "Connecting to wallet...";
             const { selectedWallet, provider } =
                 await connectSelectedWallet();
@@ -781,6 +907,59 @@ registrationForm.addEventListener(
                 console.error("Confirmed block timestamp lookup failed:", timestampError);
                 blockTimestamp = "Unavailable (block lookup failed)";
             }
+
+                "Generating Fingerprint...";
+
+            const hash =
+                await generateSHA256(file);
+
+            hashDisplay.textContent =
+                hash;
+
+            hashDisplay.classList.add(
+                "generated"
+            );
+
+            console.log("Creator:", creatorName);
+            console.log("Work Title:", workTitle);
+            console.log("Work Type:", workType);
+            console.log("Creation Date:", creationDate);
+            console.log("Description:", description);
+            console.log("File:", file.name);
+            console.log("SHA-256:", hash);
+            console.log("Wallet:", connectedWallet);
+
+            showSuccess(
+                "SHA-256 fingerprint generated successfully. Your work is ready for blockchain registration."
+            );
+
+            /* =========================
+               SHOW CERTIFICATE
+            ========================= */
+
+            const timestamp =
+                new Date().toLocaleString();
+
+            showCertificate(
+                workTitle,
+                connectedWallet || "Wallet not connected",
+                hash,
+                timestamp
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Hash generation error:",
+                error
+            );
+
+            showError(
+                "Unable to generate the SHA-256 fingerprint."
+            );
+
+        } finally {
+ main
 
             showCertificate(registrationForm, {
                 title: workTitle,
